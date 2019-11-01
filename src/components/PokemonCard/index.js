@@ -31,7 +31,7 @@ const PokemonCard = ({
       <StyledBallButton />
     </StyledName>
     {currentPokemon === name && (
-      <StyledDetails>
+      <StyledDetails data-testid={`pokemonDetails-${name}`}>
         <StyledImage alt={name} src={`${SPRITES_URL}${id}.png`} />
         <StyledHeight>
           <h5>Height</h5>

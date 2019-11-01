@@ -27,7 +27,7 @@ class MainBody extends React.Component {
       this.setState({ currentPokemon: pokemon })
 
     return (
-      <StyledWrapper>
+      <StyledWrapper data-testid="mainBody">
         {pokemonList.map((pokemon) => (
           <PokemonCard
             {...pokemon}
