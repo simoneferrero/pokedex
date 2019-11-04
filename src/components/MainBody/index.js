@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components/macro'
 
@@ -15,30 +15,21 @@ const StyledWrapper = styled.div`
   padding: ${SPACING.base}px;
 `
 
-class MainBody extends React.Component {
-  state = {
-    currentPokemon: null,
-  }
+const MainBody = ({ pokemonList }) => {
+  const [currentPokemon, setCurrentPokemon] = useState(null)
 
-  render() {
-    const { currentPokemon } = this.state
-    const { pokemonList } = this.props
-    const setCurrentPokemon = (pokemon) =>
-      this.setState({ currentPokemon: pokemon })
-
-    return (
-      <StyledWrapper data-testid="mainBody">
-        {pokemonList.map((pokemon) => (
-          <PokemonCard
-            {...pokemon}
-            currentPokemon={currentPokemon}
-            key={pokemon.id}
-            setCurrentPokemon={setCurrentPokemon}
-          />
-        ))}
-      </StyledWrapper>
-    )
-  }
+  return (
+    <StyledWrapper data-testid="mainBody">
+      {pokemonList.map((pokemon) => (
+        <PokemonCard
+          {...pokemon}
+          currentPokemon={currentPokemon}
+          key={pokemon.id}
+          setCurrentPokemon={setCurrentPokemon}
+        />
+      ))}
+    </StyledWrapper>
+  )
 }
 
 MainBody.propTypes = {
