@@ -57,6 +57,7 @@ describe('Given `MainBody`', () => {
 
   it('should correctly open and close pokemon details on click', () => {
     const { getByText, getByTestId, queryByTestId } = renderComponent()
+    const charmanderTitle = getByText(new RegExp('charmander', 'i'))
 
     expect(queryByTestId(/pokemonDetails-bulbasaur/)).not.toBeInTheDocument()
 
@@ -64,8 +65,13 @@ describe('Given `MainBody`', () => {
 
     expect(getByTestId(/pokemonDetails-bulbasaur/)).toBeInTheDocument()
 
-    fireEvent.click(getByText(new RegExp('charmander', 'i')))
+    fireEvent.click(charmanderTitle)
 
     expect(queryByTestId(/pokemonDetails-bulbasaur/)).not.toBeInTheDocument()
+    expect(getByTestId(/pokemonDetails-charmander/)).toBeInTheDocument()
+
+    fireEvent.click(charmanderTitle)
+
+    expect(queryByTestId(/pokemonDetails-charmander/)).not.toBeInTheDocument()
   })
 })

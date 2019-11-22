@@ -18,6 +18,9 @@ const StyledWrapper = styled.div`
 const MainBody = ({ pokemonList }) => {
   const [currentPokemon, setCurrentPokemon] = useState(null)
 
+  const handleClick = (name) =>
+    setCurrentPokemon(name !== currentPokemon ? name : null)
+
   return (
     <StyledWrapper data-testid="mainBody">
       {pokemonList.map((pokemon) => (
@@ -25,7 +28,7 @@ const MainBody = ({ pokemonList }) => {
           {...pokemon}
           currentPokemon={currentPokemon}
           key={pokemon.id}
-          setCurrentPokemon={setCurrentPokemon}
+          setCurrentPokemon={handleClick}
         />
       ))}
     </StyledWrapper>
