@@ -1,9 +1,10 @@
-import React, { Profiler } from 'react'
+import React, { lazy, Profiler, Suspense } from 'react'
 import styled from 'styled-components/macro'
 
-import MainBody from './components/MainBody'
 import { COLORS, SPACING } from './constants'
 import { ReactComponent as Pokeball } from './icons/pokeball.svg'
+
+const MainBody = lazy(() => import('./components/MainBody'))
 
 const onRenderCallback = (...args) => {
   if (args.id !== 'app') {
@@ -41,7 +42,9 @@ const App = () => (
         <Pokeball />
         <h3>Pokedex</h3>
       </StyledHeader>
-      <MainBody />
+      <Suspense fallback="Loading...">
+        <MainBody />
+      </Suspense>
     </div>
   </Profiler>
 )
